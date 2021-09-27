@@ -10,6 +10,7 @@
         <div>Language: {{ info.original_language }}</div>
         <div>Vote: <span class="fw-bold">{{ info.vote_average }}</span></div>
         <div>Total Vote: {{ info.vote_count}}</div>
+        <div><span class="fw-bold">Overview: </span>{{ info.overview }}</div>
       </div>
     </div>
   </div>
@@ -67,6 +68,7 @@ export default {
   background-color: rgba(0,0,0,0.9);
   color: white;
   transform: rotateY(180deg);
+  overflow-y: scroll;
 }
 </style>
 

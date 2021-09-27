@@ -1,14 +1,16 @@
 <template>
-  <div class="text-center">
-    <div class="cover">
-      <img :src="`https://image.tmdb.org/t/p/w300${info.poster_path}`" alt="">
-    </div>
-    <div class="description">
-      <h3 class="fw-bold fs-3">{{ info.title }}</h3>
-      <h5 class="fs-5">{{ info.original_title }}</h5>
-      <div>Language: {{ info.original_language }}</div>
-      <div>Vote: <span class="fw-bold">{{ info.vote_average }}</span></div>
-      <div>Total Vote: {{ info.vote_count}}</div>
+  <div class="flip-card">
+    <div class="text-center flip-card-inner">
+      <div class="cover flip-card-front">
+        <img :src="`https://image.tmdb.org/t/p/w300${info.poster_path}`" alt="Wtf?">
+      </div>
+      <div class="description flip-card-back text-light">
+        <p class="fw-bold">{{ info.title }}</p>
+        <p class="">{{ info.original_title }}</p>
+        <div>Language: {{ info.original_language }}</div>
+        <div>Vote: <span class="fw-bold">{{ info.vote_average }}</span></div>
+        <div>Total Vote: {{ info.vote_count}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,19 +33,40 @@ export default {
   }
 
 }
-.description {
-  display: none;
+
+.flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 600px;
+  perspective: 1000px;
 }
 
-img {
-    &:hover {
-      display: none;
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
 
-    &:hover .description{
-        display: block;
-      }
-    }
-  }
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
 
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  transform: rotateY(180deg);
+}
 </style>
 

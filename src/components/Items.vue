@@ -7,7 +7,11 @@
       <div class="description flip-card-back text-light">
         <p class="fw-bold">{{ info.title }}</p>
         <p class="">{{ info.original_title }}</p>
-        <div>Language: {{ info.original_language }}</div>
+        <div>Language:
+          <div class="lenguage">
+            <img :src="require('../assets/' + info.original_language + '.jpg')">
+          </div> 
+        </div>
         <div>Vote: <span class="fw-bold">{{ info.vote_average }}</span></div>
         <div>Total Vote: {{ info.vote_count}}</div>
         <div><span class="fw-bold">Overview: </span>{{ info.overview }}</div>
@@ -33,6 +37,17 @@ export default {
     height: 100%;
   }
 
+}
+
+.lenguage {
+  width: 30px;
+  height: 15px;
+  display: inline-block;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .flip-card {

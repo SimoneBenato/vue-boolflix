@@ -6,7 +6,7 @@
           <h4 class="text-light fw-bold">FILM</h4>
         </div>
       </div>
-      <div class="row gy-3 d-flex">
+      <div class="row gy-3 d-flex flex-nowrap test">
         <div v-for="(item, index) in itemsListMain" :key="index"  class="col-3 card d-flex justify-content-end">
           <Item :key="index"  :info="item" />
         </div>
@@ -16,7 +16,7 @@
           <h4 class="text-light fw-bold">TV SERIES</h4>
         </div>
       </div>
-      <div class="row gy-3 d-flex">
+      <div class="row gy-3 d-flex flex-nowrap test">
         <div v-for="(item, index) in seriesListMain" :key="index"  class="col-3 card d-flex justify-content-end">
           <Item :key="index"  :info="item" />
         </div>
@@ -59,6 +59,10 @@ export default {
     .card {
       background-color: transparent;
       border: transparent;
+    }
+
+    .test {
+      overflow-x: scroll;
     }
   }
   

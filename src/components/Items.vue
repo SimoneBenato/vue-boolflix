@@ -2,17 +2,18 @@
   <div class="flip-card">
     <div class="text-center flip-card-inner">
       <div class="cover flip-card-front">
-        <img :src="`https://image.tmdb.org/t/p/w300${info.poster_path}`" alt="Wtf?">
+        <img :src="`https://image.tmdb.org/t/p/w342${info.poster_path}`" alt="Wtf?">
       </div>
       <div class="description flip-card-back text-light">
-        <p class="fw-bold">{{ info.title }}</p>
+        <p class="fw-bold">{{ info.title ? info.title : info.name }}</p>
         <p class="">{{ info.original_title }}</p>
         <div>Language:
           <div class="lenguage">
             <img :src="require('../assets/' + info.original_language + '.jpg')">
           </div> 
         </div>
-        <div>Vote: <span class="fw-bold">{{ info.vote_average }}</span></div>
+        <!-- <span class="fw-bold">{{ info.vote_average }}</span> -->
+        <div>Vote: <i v-for="n in 5" :key="n" class="fa-star" :class="(n <= getVote()) ? 'far' : 'fas'"></i></div>
         <div>Total Vote: {{ info.vote_count}}</div>
         <div><span class="fw-bold">Overview: </span>{{ info.overview }}</div>
       </div>
@@ -21,13 +22,20 @@
 </template>
 
 <script>
+
 export default {
   name: 'Items',
-  props: ['info']
+  props: ['info'],
+  methods: {
+    getVote() {
+      return Math.ceil(this.info.vote_avarange / 2)
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
+
 .cover {
   height: 100%;
   width: 100%;
@@ -83,7 +91,7 @@ export default {
   background-color: rgba(0,0,0,0.9);
   color: white;
   transform: rotateY(180deg);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 </style>
 
